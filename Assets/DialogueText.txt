@@ -1,2 +1,10 @@
-Hello there
-Ah shit here we go again
+There's a cute cat. &
+He looks at you. &
+*** Tell him he's handsome | The cat looks satisfied. &
+*** Ask him if he's got a problem | The cat calls you an asshole. &
+So it's quite windy today huh? &
+There's elevator music in the background. &
+*** What the hell? | Hell the what? &
+*** *yeah* | *haey* &
+*** Nice | eciN &
+Vaya cosas eh?
