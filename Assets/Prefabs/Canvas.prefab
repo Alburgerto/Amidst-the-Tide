@@ -256,5 +256,5 @@ MonoBehaviour:
   m_buttonDistance: 95
   m_boatGoalYPosition: -1
   m_boatGoalScale: 0.3
-  m_zoomScaleSpeed: 0.5
-  m_zoomPositionSpeed: 1.5
+  m_zoomScaleSpeed: 0.25
+  m_zoomPositionSpeed: 1.3
