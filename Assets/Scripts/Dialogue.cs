@@ -18,8 +18,10 @@ public class Dialogue : MonoBehaviour
     public float m_buttonDistance;
     public float m_boatGoalYPosition;
     public float m_boatGoalScale;
-    public float m_zoomSpeed;
+    public float m_zoomScaleSpeed;
+    public float m_zoomPositionSpeed;
 
+    private bool m_zoomCoroutineRunning;
     private float m_boatStartYPosition;
     private float m_boatStartScale;
     private int m_narratorLines; // Zoom boat in/out a fraction per narrator line displayed
@@ -31,6 +33,7 @@ public class Dialogue : MonoBehaviour
 
     void Start()
     {
+        m_zoomCoroutineRunning = false;
         m_boatStartYPosition = m_boat.position.y;
         m_boatStartScale = m_boat.localScale.x;
         SetupLines();
@@ -74,8 +77,7 @@ public class Dialogue : MonoBehaviour
         for (int i = 0; i < m_dialogueLines.Length; ++i)
         {
             string displayedLine = m_dialogueLines[i];
-
-
+            
             // User choices
             if (displayedLine.StartsWith("***") && displayedLine.Contains("|"))
             {
@@ -111,8 +113,12 @@ public class Dialogue : MonoBehaviour
                 }
                 
                 m_textBox.text = displayedLine;
-                yield return FadeText(true, m_textBox);
+                if (m_zoomCoroutineRunning)
+                {
+                    StopCoroutine(ZoomOnBoat(narratorLinesDisplayed));
+                }
                 StartCoroutine(ZoomOnBoat(narratorLinesDisplayed));
+                yield return FadeText(true, m_textBox);
                 ++narratorLinesDisplayed;
                 // yield return new WaitForSeconds(m_lineDelayTime)
                 yield return AwaitInput(); // Don't move on to next line until user presses any key
@@ -131,18 +137,27 @@ public class Dialogue : MonoBehaviour
 
     private IEnumerator ZoomOnBoat(int l_narratorLine)
     {
+        m_zoomCoroutineRunning = true;
+        Vector3 initialPosition = m_boat.position;
         float completion = (float)l_narratorLine / m_narratorLines;
         float goalScale = Mathf.Lerp(m_boat.localScale.x, m_boatGoalScale, completion);
         float goalYPosition = Mathf.Lerp(m_boat.position.y, m_boatGoalYPosition, completion);
-        Debug.Log(goalScale + " " + goalYPosition);
-        while (m_boat.localScale.x > goalScale)
+        Debug.Log(goalYPosition);
+        while (m_boat.localScale.x > goalScale || m_boat.position.y > goalYPosition)
         {
-            m_boat.localScale = Vector3.Lerp(m_boat.localScale, new Vector3(goalScale, goalScale, 1), completion * Time.deltaTime * m_zoomSpeed);
-            m_boat.position = Vector3.Lerp(m_boat.position, m_boat.position * Vector2.up * goalYPosition, completion * Time.deltaTime * m_zoomSpeed);
-            yield return new WaitForSeconds(0.05f);
+            if (m_boat.localScale.x > goalScale)
+            {
+                m_boat.localScale = Vector3.MoveTowards(m_boat.localScale, new Vector3(goalScale, goalScale, 1), Time.deltaTime * m_zoomScaleSpeed);
+            }
+            if (m_boat.position.y > goalYPosition)
+            {
+                //            Debug.Log("We are " + Mathf.Abs(m_boat.position.y - goalYPosition) + " units away");
+                Vector3 newPosition = new Vector3(initialPosition.x, goalYPosition, initialPosition.z);
+                m_boat.position = Vector3.MoveTowards(m_boat.position, newPosition, Time.deltaTime * m_zoomPositionSpeed);
+            }
+            yield return new WaitForSeconds(0.1f);
         }
-        m_boat.localScale = new Vector3(goalScale, goalScale, 1);
-        m_boat.position *= Vector2.up * goalYPosition;
+        m_zoomCoroutineRunning = false;
     }
 
     // Runs after every line of text has been shown
