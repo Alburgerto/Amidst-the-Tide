@@ -13,6 +13,7 @@ public class Game : MonoBehaviour
     public TextAsset m_dialogueFile;
     public Transform m_boat;
     public Button m_button;
+    public GameObject m_boatSail;
     public Vector2 m_boatInitialGoalPosition;
     public Vector2 m_boatFinalGoalPosition;
 
@@ -73,18 +74,13 @@ public class Game : MonoBehaviour
         }
     }
 
-    private bool IsNotNullOrEmpty(string l_line)
-    {
-        return string.IsNullOrEmpty(l_line);
-    }
-
     private IEnumerator RunGame()
     {
-        //yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(2.5f);
         yield return FadeOutPanel(m_fadePanelTime);
-        //yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(5);
         yield return TimedZoomOnBoat(m_boatInitialGoalPosition, m_boatInitialGoalScale, m_initialZoomTime);
-
+        //m_boatSail.SetActive(true);
         yield return RunDialogue();
         yield return TheEnd();
     }
@@ -172,7 +168,7 @@ public class Game : MonoBehaviour
                 Vector3 newPosition = new Vector3(goalPosition.x, goalPosition.y, initialPosition.z);
                 m_boat.position = Vector3.MoveTowards(m_boat.position, newPosition, Time.deltaTime * m_zoomPositionSpeed);
             }
-            yield return new WaitForSeconds(0.1f);
+            yield return null;
         }
         m_zoomCoroutineRunning = false;
     }

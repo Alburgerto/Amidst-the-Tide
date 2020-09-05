@@ -46,8 +46,8 @@ MonoBehaviour:
   m_LightType: 3
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 1
-  m_Color: {r: 0.34718758, g: 0.5021075, b: 0.8867924, a: 1}
-  m_Intensity: 22.36
+  m_Color: {r: 0.34718758, g: 0.5021075, b: 0.7372549, a: 1}
+  m_Intensity: 19.17
   m_LightVolumeOpacity: 0.035
   m_ApplyToSortingLayers: 00000000
   m_LightCookieSprite: {fileID: 0}
@@ -55,11 +55,11 @@ MonoBehaviour:
   m_LightOrder: 5
   m_AlphaBlendOnOverlap: 0
   m_ShadowIntensity: 1
-  m_ShadowVolumeIntensity: 1
+  m_ShadowVolumeIntensity: 0.346
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
-  m_PointLightInnerRadius: 0.44
-  m_PointLightOuterRadius: 9.4
+  m_PointLightInnerRadius: 0.25
+  m_PointLightOuterRadius: 8.4
   m_PointLightDistance: 3
   m_PointLightQuality: 1
   m_ShapeLightParametricSides: 5
@@ -88,7 +88,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &862877130
 Transform:
   m_ObjectHideFlags: 0
@@ -124,11 +124,15 @@ MonoBehaviour:
   m_ShapePath:
   - {x: 1.9110246, y: -1.9950013, z: 0}
   - {x: 1.951367, y: -0.4653198, z: 0}
-  - {x: 1.709594, y: 1.5910714, z: 0}
-  - {x: -1.6727941, y: -0.4439717, z: 0}
-  m_ShapePathHash: -883326492
+  - {x: 1.8253545, y: 0.92082256, z: 0}
+  - {x: 1.5593365, y: 3.2424672, z: 0}
+  - {x: -0.4461753, y: 4.90319, z: 0}
+  - {x: -1.0735371, y: 2.448994, z: 0}
+  - {x: -2.0373068, y: 0.41909218, z: 0}
+  - {x: -3.2564855, y: -1.8539529, z: 0}
+  m_ShapePathHash: -367881869
   m_Mesh: {fileID: 0}
-  m_InstanceId: 41812
+  m_InstanceId: -108162
 --- !u!1 &7727122151182903393
 GameObject:
   m_ObjectHideFlags: 0
@@ -158,7 +162,7 @@ Transform:
   m_GameObject: {fileID: 7727122151182903393}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.21424775, y: 0.21424775, z: 0.21424775}
+  m_LocalScale: {x: 0.28, y: 0.28, z: 1}
   m_Children:
   - {fileID: 862877130}
   - {fileID: 7727122151847199363}
@@ -204,7 +208,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7c7b7d1922f6811459434db10f239499, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -282,7 +286,7 @@ MonoBehaviour:
   - {x: -13.636218, y: -14.035196, z: 0}
   m_ShapePathHash: 980784293
   m_Mesh: {fileID: 0}
-  m_InstanceId: 41814
+  m_InstanceId: -93860
 --- !u!1 &7727122151598866192
 GameObject:
   m_ObjectHideFlags: 0
@@ -308,7 +312,7 @@ Transform:
   m_GameObject: {fileID: 7727122151598866192}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.32, y: 0.58, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3.2525737, y: 3.2525737, z: 1.1441}
   m_Children:
   - {fileID: 7727122151182904223}
   m_Father: {fileID: 0}
