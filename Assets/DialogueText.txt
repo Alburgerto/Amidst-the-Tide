@@ -1,4 +1,48 @@
-We must be brave, my friend. Muster all your courage for this, our final quest. &
-So many said we were crazy to do this, yet here we are. &
-*** Go to die | Let's do this, Phillips. &
-*** Turn back | Our family is waiting, Phillips. Let's go back home. &
+We must be brave, my friend. 
+Muster all your courage for this, our final adventure. &
+So many said we were crazy to do this, yet here we are. We are facing C'thulu in its abominable lair. &
+Of course, there's some truth in their words. 
+But then again, what better way to go than this? &
+The alternative of dying of old age in a couple of years is not all that interesting, is it, boy? &
+It's not like I have much else to do anyway. &
+All my life I have spent proving the old myths true. &
+Nobody would believe me, and who can blame them. Such wild ideas, such outrageous claims. &
+Proof has always been there for those who choose to see it, those who don't find bliss in ignorance. &
+To acknowledge such bold claims is to come to terms with the fact that the Human Race is as meaningless as a single speck of dust. &
+To suffer such belittlement is no easier than to shoot at your own foot. &
+To such things I say... &
+*** What of it! | Are we so entitled to the whole Universe as we know it that we can't enjoy ourselves knowing just how little we matter? &
+*** Need to face the facts | A terrible thing to learn, indeed. The sooner we accept the truth, the easier it will be to move on. &
+"What we know is a drop, what we don't know is an ocean." 
+If not by mythical creatures on this Earth, surely we would learn of our insignificance some other way regardless. &
+Alas, I, a researcher and an explorer, what choice do I have but to go and meet the Old One, even if at the cost of my own life? &
+Still, I can't help but feel guilty for neglecting my family for so long. &
+It's funny how much easier it has always been to feel at home while on an adventure out in the world than with a loving family. &
+It's a bitter feeling, cherishing so much your time alone to the point where you forget about everyone else. &
+The way I haven't been there for them these last few decades weighs heavy on my soul. &
+I should have done things differently. &
+*** Spend more time with them | Should have found balance between me time and family time. Stupid me! &
+*** Why have a family in the first place! | Oh you big dummy, should have thought about the important decisions in life more thoroughly. &
+So many bad decisions. To die in horror, devoured whole by C'thulu himself is the least I deserve. &
+Oh well, it's no use thinking of my past mistakes. &
+Still though, is it the right time for me? &
+I'm not afraid to die, but is it my time yet? Is there really nothing else I can do? &
+*** Think things over | Should I head back? C'thulu is not going anywhere anytime soon. It can wait. &
+*** Get back in touch with family | Would they be willing to give me another chance? &
+*** Doesn't matter when I die | The moment I die, the world will keep spinning as it always has. What difference is it if I go today or a year from now? &
+It's a good time to have an existencial crisis, isn't it, Phillips? On our way to meet The Great Old One nonetheless. &
+Surely he will not be pleased to be awoken from his deep slumber. The least we can do is offer ourselves as a hearty meal for him. &
+*Phillips responds with a blank stare* &
+*** *Pet Phillips* | Come here boy, that's right. Oh you like those belly rubs, don't you? Oh yes, you do. &
+*** What's up with that face | What's up, buddy? Oh, right, not a fan of bringing you to your untimely death, are you? Not like you would last long with me gone! &
+*** Call him a good boy | Who's a good boy? Who's a good boy?! That's right! And you know it. &
+Oh, Phillips. Do you see that? C'thulu's Lair, looming closer and closer. Can't you feel it in the air? Downright evil air emanating from that place. &
+What do you think, boy? Shall we tread where no other man has ever been? Look into the eyes of The Great Dreamer? Say farewell to this life before such a terrible and powerful presence? &
+Here is our chance to be pioneers, to leave this realm in the grandest way imaginable. To suffer the most majestic of deaths. &
+... and yet, I feel this unease. For so long I have thought only about myself and it's now, while facing my own demise, when my family is occupying so many of my thoughts. &
+Should I try to right all the wrongs I have done my whole life? &
+... would my family take me in after everything that has happened between us? &
+... is it ever too late for someone like me? &
+... will they care? &
+*** Enter C'thulu's Lair | They will be just fine without me. It's time we face the source of my deepest horrors and wonders. &
+*** Turn back | We'd better not disturb C'thulu's dreams, Phillips. Let's go back to our family. Let's go home. &

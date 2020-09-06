@@ -10,6 +10,7 @@ public class Game : MonoBehaviour
 {
     public TextMeshProUGUI m_textBox;
     public Image m_blackPanel;
+    public Image m_title;
     public TextAsset m_dialogueFile;
     public Transform m_boat;
     public Button m_button;
@@ -29,6 +30,7 @@ public class Game : MonoBehaviour
     public float m_zoomTime;
     public float m_initialZoomTime;
 
+    private bool m_playCthuluRoar;
     private bool m_zoomCoroutineRunning;
     private float m_boatStartYPosition;
     private float m_boatStartScale;
@@ -41,6 +43,7 @@ public class Game : MonoBehaviour
 
     void Start()
     {
+        m_playCthuluRoar = false;
         m_zoomCoroutineRunning = false;
         m_boatStartYPosition = m_boat.position.y;
         m_boatStartScale = m_boat.localScale.x;
@@ -76,17 +79,18 @@ public class Game : MonoBehaviour
 
     private IEnumerator RunGame()
     {
-        //yield return new WaitForSeconds(2.5f);
-        //yield return FadeOutPanel(false, m_fadePanelTime);
-        //yield return new WaitForSeconds(5);
-        //yield return TimedZoomOnBoat(new Vector3(-17.66f, 9, 0.32183f), m_boat.localScale.x, m_initialZoomTime / 1.5f); // Cat zoom
-        //m_textBox.text = "We are actually doing it, aren't we, Philipps?";
-        //yield return FadeText(true, m_textBox);
-        //yield return new WaitForSeconds(2);
-        //Camera.main.gameObject.GetComponent<Sound>().PlayMeowSound();
-        //yield return new WaitForSeconds(3);
-        //StartCoroutine(FadeText(false, m_textBox));
-        //yield return TimedZoomOnBoat(m_boatInitialGoalPosition, m_boatInitialGoalScale, m_initialZoomTime);
+        yield return new WaitForSeconds(2.5f);
+        yield return FadeOutPanel(false, m_fadePanelTime);
+
+        yield return new WaitForSeconds(5);
+        yield return TimedZoomOnBoat(new Vector3(-17.66f, 9, 0.32183f), m_boat.localScale.x, m_initialZoomTime / 1.5f); // Cat zoom
+        m_textBox.text = "We are actually doing it, aren't we, Philipps?";
+        yield return FadeText(true, m_textBox);
+        yield return new WaitForSeconds(2);
+        Camera.main.gameObject.GetComponent<Sound>().PlayMeowSound();
+        yield return new WaitForSeconds(3);
+        StartCoroutine(FadeText(false, m_textBox));
+        yield return TimedZoomOnBoat(m_boatInitialGoalPosition, m_boatInitialGoalScale, m_initialZoomTime);
         yield return RunDialogue();
         yield return TheEnd();
     }
@@ -218,15 +222,20 @@ public class Game : MonoBehaviour
         float until = time + l_fadePanelTime;
         float alphaFrom = l_fadeIn ? 0 : 1;
         float alphaTo = 1 - alphaFrom;
-        Color color = m_blackPanel.color;
+        Color colorPanel = m_blackPanel.color;
+        Color colorTitle = m_title.color;
         while (Time.time < until)
         {
-            color.a = Mathf.Lerp(alphaFrom, alphaTo, (Time.time - time) / l_fadePanelTime);
-            m_blackPanel.color = color;
+            colorPanel.a = Mathf.Lerp(alphaFrom, alphaTo, (Time.time - time) / l_fadePanelTime);
+            colorTitle.a = Mathf.Lerp(alphaFrom, alphaTo, (Time.time - time) / l_fadePanelTime);
+            m_blackPanel.color = colorPanel;
+            m_title.color = colorTitle;
             yield return null;
         }
-        color.a = alphaTo;
-        m_blackPanel.color = color;
+        colorPanel.a = alphaTo;
+        colorTitle.a = alphaTo;
+        m_blackPanel.color = colorPanel;
+        m_title.color = colorTitle;
     }
 
     // Runs after every line of text has been shown
@@ -236,7 +245,10 @@ public class Game : MonoBehaviour
         yield return new WaitForSeconds(2.5f);
         yield return FadeOutPanel(true, m_fadePanelTime);
         yield return new WaitForSeconds(1.5f);
-        Camera.main.gameObject.GetComponent<Sound>().PlayGrowlSound();
+        if (m_playCthuluRoar)
+        {
+            Camera.main.gameObject.GetComponent<Sound>().PlayGrowlSound();
+        }
     }
 
     private IEnumerator ClearButtons()
@@ -260,6 +272,7 @@ public class Game : MonoBehaviour
         if (m_choiceButtons.Contains(l_button))
         {
             m_lineToDisplay = m_choiceTexts[m_choiceButtons.IndexOf(l_button)];
+            if (m_lineToDisplay.Contains("deepest horrors")) { m_playCthuluRoar = true; }
             m_pressedButton = l_button;
         }
     }
