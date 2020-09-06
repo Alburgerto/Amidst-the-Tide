@@ -76,11 +76,17 @@ public class Game : MonoBehaviour
 
     private IEnumerator RunGame()
     {
-        yield return new WaitForSeconds(2.5f);
-        yield return FadeOutPanel(m_fadePanelTime);
-        yield return new WaitForSeconds(5);
-        yield return TimedZoomOnBoat(m_boatInitialGoalPosition, m_boatInitialGoalScale, m_initialZoomTime);
-        //m_boatSail.SetActive(true);
+        //yield return new WaitForSeconds(2.5f);
+        //yield return FadeOutPanel(false, m_fadePanelTime);
+        //yield return new WaitForSeconds(5);
+        //yield return TimedZoomOnBoat(new Vector3(-17.66f, 9, 0.32183f), m_boat.localScale.x, m_initialZoomTime / 1.5f); // Cat zoom
+        //m_textBox.text = "We are actually doing it, aren't we, Philipps?";
+        //yield return FadeText(true, m_textBox);
+        //yield return new WaitForSeconds(2);
+        //Camera.main.gameObject.GetComponent<Sound>().PlayMeowSound();
+        //yield return new WaitForSeconds(3);
+        //StartCoroutine(FadeText(false, m_textBox));
+        //yield return TimedZoomOnBoat(m_boatInitialGoalPosition, m_boatInitialGoalScale, m_initialZoomTime);
         yield return RunDialogue();
         yield return TheEnd();
     }
@@ -109,6 +115,24 @@ public class Game : MonoBehaviour
                 m_choiceTexts.Add(displayedLine.Split('|')[1]);
                 m_choiceButtons.Add(button);
                 yield return new WaitForSeconds(0.5f); // Time in between button creation and displayings
+
+                if (i + 1 == m_dialogueLines.Length) // Don't remove text if waiting for player choice
+                {
+                    awaitingChoice = false;
+                    yield return MakeChoice();
+                    displayedLine = m_lineToDisplay;
+
+                    StartCoroutine(FadeText(false, m_textBox));
+                    StartCoroutine(ClearButtons());
+                    m_lineToDisplay = "";
+                    m_pressedButton = null;
+                    m_choiceTexts.Clear();
+                    yield return new WaitForSeconds(1.5f);
+                    m_textBox.text = displayedLine;
+                    yield return FadeText(true, m_textBox);
+                    yield return AwaitInput(); // Don't move on to next line until user presses any key
+
+                }
             }
             else // Narrator lines
             {
@@ -130,7 +154,6 @@ public class Game : MonoBehaviour
                 m_textBox.text = displayedLine;
                 if (m_zoomCoroutineRunning)
                 {
-                    //StopCoroutine(ZoomOnBoat(goalScale, goalXPosition, goalYPosition, m_zoomTime));
                     StopCoroutine(ZoomOnBoat(narratorLinesDisplayed));
                 }
                 StartCoroutine(ZoomOnBoat(narratorLinesDisplayed));
@@ -180,7 +203,6 @@ public class Game : MonoBehaviour
         float completion;
         Vector3 newPosition = new Vector3(l_goalPosition.x, l_goalPosition.y, m_boat.position.z);
         Vector3 newScale = new Vector3(l_goalScale, l_goalScale, 1);
-
         while (Time.time < until)
         {
             completion = (Time.time - time) / l_time * Time.deltaTime;
@@ -190,26 +212,31 @@ public class Game : MonoBehaviour
         }
     }
 
-    private IEnumerator FadeOutPanel(float l_fadePanelTime)
+    private IEnumerator FadeOutPanel(bool l_fadeIn, float l_fadePanelTime)
     {
         float time = Time.time;
         float until = time + l_fadePanelTime;
+        float alphaFrom = l_fadeIn ? 0 : 1;
+        float alphaTo = 1 - alphaFrom;
         Color color = m_blackPanel.color;
         while (Time.time < until)
         {
-            color.a = Mathf.Lerp(1, 0, (Time.time - time) / l_fadePanelTime);
+            color.a = Mathf.Lerp(alphaFrom, alphaTo, (Time.time - time) / l_fadePanelTime);
             m_blackPanel.color = color;
             yield return null;
         }
-        color.a = 0;
+        color.a = alphaTo;
         m_blackPanel.color = color;
     }
 
     // Runs after every line of text has been shown
     private IEnumerator TheEnd()
     {
+        yield return FadeText(false, m_textBox);
+        yield return new WaitForSeconds(2.5f);
+        yield return FadeOutPanel(true, m_fadePanelTime);
+        yield return new WaitForSeconds(1.5f);
         Camera.main.gameObject.GetComponent<Sound>().PlayGrowlSound();
-        yield return null;
     }
 
     private IEnumerator ClearButtons()

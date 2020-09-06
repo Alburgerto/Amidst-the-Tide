@@ -1,10 +1,4 @@
-There's a cute cat. &
-He looks at you. &
-*** Tell him he's handsome | The cat looks satisfied. &
-*** Ask him if he's got a problem | The cat calls you an asshole. &
-So it's quite windy today huh? &
-There's elevator music in the background. &
-*** What the hell? | Hell the what? &
-*** *yeah* | *haey* &
-*** Nice | eciN &
-Vaya cosas eh?
+We must be brave, my friend. Muster all your courage for this, our final quest. &
+So many said we were crazy to do this, yet here we are. &
+*** Go to die | Let's do this, Phillips. &
+*** Turn back | Our family is waiting, Phillips. Let's go back home. &

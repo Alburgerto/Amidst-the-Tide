@@ -8,6 +8,7 @@ public class Sound : MonoBehaviour
     public float m_growlVolume;
     public AudioClip[] m_thunderSounds;
     public AudioClip m_growlSound;
+    public AudioClip m_meowSound;
 
     public AudioSource m_soundSource;
 
@@ -33,4 +34,8 @@ public class Sound : MonoBehaviour
         m_soundSource.PlayOneShot(m_growlSound, m_growlVolume);
     }
 
+    public void PlayMeowSound()
+    {
+        m_soundSource.PlayOneShot(m_meowSound, 1);
+    }
 }
